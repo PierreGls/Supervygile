@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class UserController extends Controller
 {
@@ -43,4 +44,15 @@ class UserController extends Controller
 		
         return $this->index($infos);
 	}
+	
+	/**
+     * @Route("/signout", name="signout")
+     */
+    public function signOut(SessionInterface $session)
+    {
+		$session->clear();
+        return $this->forward('App\Controller\AnonymousController::accueil');
+		
+		
+    }
 }
