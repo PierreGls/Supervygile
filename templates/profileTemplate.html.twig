@@ -1,0 +1,9 @@
+{% block body %}
+	{% if infos is defined %}
+		<ul>
+			{% for info in infos %}
+				<li>{{ info }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+{% endblock%}
