@@ -1,0 +1,20 @@
+/*Main css*/
+
+/*
+*{
+	border: 1px solid rgba(100,100,100,0.8);
+}
+*/
+
+
+/**********************************Accueil**************************/
+.masthead{
+	background-image:url(img/accueilimg.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-height:90vh;
+}
+
+.masthead h1{
+	margin-top:25vh;
+}

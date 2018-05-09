@@ -6,15 +6,16 @@ use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class UserController extends Controller
 {
     /**
      * @Route("/user", name="user")
      */
-    public function index($infos, SessionInterface $session)
+    public function index($infos)
     {
+		$session = new Session();
 		$session->set('login', $infos['login']);
         return $this->render('user/index.html.twig', [
             'controller_name' => 'UserController', "infos" => $infos,
@@ -48,9 +49,10 @@ class UserController extends Controller
 	/**
      * @Route("/signout", name="signout")
      */
-    public function signOut(SessionInterface $session)
+    public function signOut()
     {
-		$session->clear();
+		$session = new Session();
+		$session->invalidate();
         return $this->forward('App\Controller\AnonymousController::accueil');
 		
 		
