@@ -27,10 +27,15 @@
 	background-size: cover;
 }
 
+.form-group.requiredField .control-label:after { 
+	content:"*";
+	color:red;
+}
+
 /**********************************ConnectedAccueil**************************/
 
 #listeProjet{
-	overflow:scroll;
+	overflow-x:scroll;
 	max-height:20em;
 }
 
@@ -42,9 +47,23 @@
 }
 
 
-#imgProfil img{
+.imgProfil{
 	width:70px;
 	height:70px;
 	border-radius:100%;
 	border:1px solid gray;
+}
+
+#listeEleve{
+	overflow-y:scroll;
+	max-height:80vh;
+}
+
+/**********************************CreerProjet**************************/
+
+.imgProjet{
+	border-radius:3px;
+	border:1px solid DarkGray;
+	height:180px;
+	width:286px;
 }

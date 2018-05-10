@@ -77,11 +77,11 @@ class UserController extends Controller
     }
 	
 	/**
-     * @Route("/profilGeneral", name="profilGeneral")
+     * @Route("/creerProjet", name="creerProjet")
      */
-    public function profilGeneral()
+    public function creerProjet()
     {
-        return $this->render('profilGeneralTemplate.html.twig');
+        return $this->render('creerProjetTemplate.html.twig');
     }
 	
 	

@@ -19,7 +19,7 @@
 				<!-- Liste des projets -->
 				<div class="row" id="listeProjet"> 
 				
-					{% for i in 1..5 %}
+					{% for i in 1..7 %}
 					
 						<div class="card d-inline-block ml-2 mb-2" style="width: 15rem;">
 							<img class="card-img-top" src="{{ absolute_url(asset('../assets/img/projetParDefault.jpg')) }}" alt="Card image cap">
@@ -35,7 +35,7 @@
 			</div>
 			
 			<div class="col-12 mt-5 text-center">
-				<a href="#" class="btn btn-success mx-auto"> Créer un projet </a>
+				<a href="{{ path('creerProjet') }}" class="btn btn-success mx-auto"> Créer un projet </a>
 				<a href="#" class="btn btn-success mx-auto"> Rejoindre un projet </a>
 			</div>
 			

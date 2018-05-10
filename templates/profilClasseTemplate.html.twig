@@ -1,9 +1,25 @@
 <!--Paramètres-->
-				
-<h3> Ma Classe </h3>
+			
 
+<div class="row mb-5">
+	<img class="imgProfil ml-2 mr-2" src="{{ absolute_url(asset('../assets/img/logoProfil.png')) }}">
+	<p class="mt-auto"><strong>Professeur</strong> : M.AAAAAAAA</p>
+</div>
 
-<p class="mx-5"> A Completer </p>
+<hr>
+
+<div class="row mb-5 id="listeEleve">
+	<p class="col-12 mb-5 text-center"> Nombre d'élèves : ...</p>
+	
+	<!--Liste élèves-->
+	{% for i in 1..7 %}
+		<div class="row col-12 border border-info  mb-3">
+			<img class="imgProfil ml-2 mr-2" src="{{ absolute_url(asset('../assets/img/logoProfil.png')) }}">
+			<p class="d-inline-block mt-auto"> Zacharia Sao</p>
+		</div>
+	{% endfor %}
+
+</div>
 
 
 		
