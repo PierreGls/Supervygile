@@ -36,14 +36,14 @@ class AnonymousController extends Controller
 		
 		if (!$user) {
 			return $this->render('connexionTemplate.html.twig', array('errConn' => "Cet utilisateur n'existe pas"));;
-		
 		}
+		
+		//User Initialization 
 		$response = $this->forward('App\Controller\UserController::index', array(
         "infos" => array('login' => $_POST['inscLogin'], "pwd" => $_POST['inscPassword']),
 		));
 		
 		return $response;
-        
     }
 	
 	/**
@@ -51,7 +51,6 @@ class AnonymousController extends Controller
     */
     public function register()
     {
-	
 		$repository = $this->getDoctrine()->getRepository(User::class);
 		// look for a single User by login
 		$user = $repository->findOneBy(['login' => $_POST['inscLogin']]);
@@ -66,9 +65,7 @@ class AnonymousController extends Controller
 			)));
 		}
 		
-		return $this->render('connexionTemplate.html.twig', array('errLogin' => "Ce login existe déjà"));;
-		
-        
+		return $this->render('connexionTemplate.html.twig', array('errLogin' => "Ce login existe déjà"));; 
     }
 	
 }

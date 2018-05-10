@@ -26,3 +26,19 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+
+/**********************************ConnectedAccueil**************************/
+
+#listeProjet{
+	overflow:scroll;
+	max-height:20em;
+}
+
+/**********************************MonProfil**************************/
+
+#imgProfil img{
+	width:70px;
+	height:70px;
+	border-radius:100%;
+	border:1px solid gray;
+}

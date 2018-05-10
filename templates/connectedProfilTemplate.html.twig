@@ -1,0 +1,72 @@
+{% extends 'headTemplate.html.twig' %}
+
+{% block body %}
+	{% include 'connectedTopTemplate.html.twig' %}
+
+	<!-- Page mon profil -->
+	
+	<div class="container">
+	
+		<div class="row mt-5 mb-5 text-center">
+			<a href="connectedAccueil" class="btn btn-success mx-auto"> Retour à la liste des projets </a>
+		</div>
+		
+		
+		<!-- Barre de naviguation verticale -->		  
+		 <div class="row">
+			<div class="col-3">
+				<div class="btn-group-vertical col-12" >
+					<a href="profilGeneral" class="col-12"><button type="button" class="btn btn-info active">Mon Profil</button></a>
+					<a href="profilClasse" class="col-12"><button type="button" class="btn btn-info col-12">Ma Classe</button></a>
+					<a href="profilParametres" class="col-12"><button type="button" class="btn btn-info col-12">Paramètres</button></a>
+				</div>
+			</div>
+		  
+		  
+		  
+			<div class="col-9">
+				<div class="tab-content" id="nav-tabContent">
+				
+					{% include 'profilGeneralTemplate.html.twig' %}
+					
+				</div>
+			</div>
+			  
+		</div>
+	</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+		
+	{% include 'footTemplate.html.twig' %}
+	
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'headTemplate.html.twig' %}
+
+{% block body %}
+	{% include 'connectedTopTemplate.html.twig' %}
+
+
+	<!-- Page d'accueil d'un User -->
+	
+	
+	<div class="container">
+		<div class="row mt-5 mb-5">
+			<h1 class="mx-auto"> Salutations cher ... !</h1>			
+		</div>
+		
+		<div class="row mb-3 mt-3">
+			<div class="col-12">
+				<h2 class="mb-4 font-italic">Mes projets</h2>
+				
+				<!-- Liste des projets -->
+				<div class="row" id="listeProjet"> 
+				
+					{% for i in 1..5 %}
+					
+						<div class="card d-inline-block ml-2 mb-2" style="width: 15rem;">
+							<img class="card-img-top" src="{{ absolute_url(asset('../assets/img/projetParDefault.jpg')) }}" alt="Card image cap">
+							<div class="card-body text-center">
+								<h5 class="card-title text-truncate text-center">Supervygile</h5>
+								<p class="card-text text-truncate">(Description du projet) : C'est un projet de supervision de projet agile à but éducatif </p>
+								<a href="#" class="btn btn-primary mx-auto">Choisir</a>
+							</div>
+						</div>
+					
+					{% endfor %}
+				</div>
+			</div>
+			
+			<div class="col-12 mt-5 text-center">
+				<a href="#" class="btn btn-success mx-auto"> Créer un projet </a>
+				<a href="#" class="btn btn-success mx-auto"> Rejoindre un projet </a>
+			</div>
+			
+		</div>
+	</div>
+	
+
+	{% include 'footTemplate.html.twig' %}
+	
+{% endblock %}

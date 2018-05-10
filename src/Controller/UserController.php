@@ -17,9 +17,13 @@ class UserController extends Controller
     {
 		$session = new Session();
 		$session->set('login', $infos['login']);
+		/*
         return $this->render('user/index.html.twig', [
             'controller_name' => 'UserController', "infos" => $infos,
         ]);
+		*/
+		
+		return $this->render('connectedAccueilTemplate.html.twig',['controller_name' => 'UserController', "infos" => $infos]);
 		
 		
     }
@@ -54,7 +58,46 @@ class UserController extends Controller
 		$session = new Session();
 		$session->invalidate();
         return $this->forward('App\Controller\AnonymousController::accueil');
-		
-		
     }
+	
+	/**
+     * @Route("/connectedAccueil", name="connectedAccueil")
+     */
+    public function connectedAccueil()	//Meme chose qu'
+    {
+        return $this->render('connectedAccueilTemplate.html.twig');
+    }
+	
+	/**
+     * @Route("/monProfil", name="monProfil")
+     */
+    public function monProfil()
+    {
+        return $this->render('connectedProfilTemplate.html.twig');
+    }
+	
+	/**
+     * @Route("/profilGeneral", name="profilGeneral")
+     */
+    public function profilGeneral()
+    {
+        return $this->render('profilGeneralTemplate.html.twig');
+    }
+	
+	/**
+     * @Route("/profilClasse", name="profilClasse")
+     */
+    public function profilClasse()
+    {
+        return $this->render('profilClasseTemplate.html.twig');
+    }
+	
+	/**
+     * @Route("/profilParametres", name="profilParametres")
+     */
+    public function profilParametres()
+    {
+        return $this->render('profilParametresTemplate.html.twig');
+    }
+	
 }
