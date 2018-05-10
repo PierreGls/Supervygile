@@ -69,11 +69,11 @@ class UserController extends Controller
     }
 	
 	/**
-     * @Route("/monProfil", name="monProfil")
+     * @Route("/monProfil/{onglet}", name="monProfil")
      */
-    public function monProfil()
+    public function monProfil($onglet)
     {
-        return $this->render('connectedProfilTemplate.html.twig');
+        return $this->render('connectedProfilTemplate.html.twig',['nom_onglet' => $onglet]);
     }
 	
 	/**

@@ -16,9 +16,9 @@
 		 <div class="row">
 			<div class="col-3">
 				<div class="btn-group-vertical col-12" >
-					<a href="profilGeneral" class="col-12"><button type="button" class="btn btn-info active">Mon Profil</button></a>
-					<a href="profilClasse" class="col-12"><button type="button" class="btn btn-info col-12">Ma Classe</button></a>
-					<a href="profilParametres" class="col-12"><button type="button" class="btn btn-info col-12">Paramètres</button></a>
+					<a href="{{ path('monProfil', {'onglet': 'General'}) }}" class="col-12"><button type="button" class="btn btn-info active">Mon Profil</button></a>
+					<a href="{{ path('monProfil', {'onglet': 'Classe'}) }}" class="col-12"><button type="button" class="btn btn-info col-12">Ma Classe</button></a>
+					<a href="{{ path('monProfil', {'onglet': 'Parametres'}) }}" class="col-12"><button type="button" class="btn btn-info col-12">Paramètres</button></a> 
 				</div>
 			</div>
 		  
@@ -27,7 +27,9 @@
 			<div class="col-9">
 				<div class="tab-content" id="nav-tabContent">
 				
-					{% include 'profilGeneralTemplate.html.twig' %}
+					{# <p> {{ nom_onglet }} </p> #}
+					
+					{% include 'profil' ~ nom_onglet ~ 'Template.html.twig' %} 
 					
 				</div>
 			</div>
