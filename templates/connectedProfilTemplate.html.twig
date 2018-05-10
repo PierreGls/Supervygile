@@ -5,7 +5,7 @@
 
 	<!-- Page mon profil -->
 	
-	<div class="container">
+	<div class="container" id="pageProfil">
 	
 		<div class="row mt-5 mb-5 text-center">
 			<a href="connectedAccueil" class="btn btn-success mx-auto"> Retour à la liste des projets </a>
@@ -14,7 +14,7 @@
 		
 		<!-- Barre de naviguation verticale -->		  
 		 <div class="row">
-			<div class="col-3">
+			<div class="col-sm-12 col-lg-3 mb-5">
 				<div class="btn-group-vertical col-12" >
 					<a href="{{ path('monProfil', {'onglet': 'General'}) }}" class="col-12"><button type="button" class="btn btn-info active">Mon Profil</button></a>
 					<a href="{{ path('monProfil', {'onglet': 'Classe'}) }}" class="col-12"><button type="button" class="btn btn-info col-12">Ma Classe</button></a>
@@ -24,7 +24,7 @@
 		  
 		  
 		  
-			<div class="col-9">
+			<div class="col-sm-12 col-lg-9">
 				<div class="tab-content" id="nav-tabContent">
 				
 					{# <p> {{ nom_onglet }} </p> #}

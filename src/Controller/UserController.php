@@ -84,20 +84,5 @@ class UserController extends Controller
         return $this->render('profilGeneralTemplate.html.twig');
     }
 	
-	/**
-     * @Route("/profilClasse", name="profilClasse")
-     */
-    public function profilClasse()
-    {
-        return $this->render('profilClasseTemplate.html.twig');
-    }
-	
-	/**
-     * @Route("/profilParametres", name="profilParametres")
-     */
-    public function profilParametres()
-    {
-        return $this->render('profilParametresTemplate.html.twig');
-    }
 	
 }

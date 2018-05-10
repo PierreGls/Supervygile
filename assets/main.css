@@ -36,6 +36,12 @@
 
 /**********************************MonProfil**************************/
 
+/*Pour que le footer soit en bas*/
+#pageProfil{				
+	min-height:75vh;
+}
+
+
 #imgProfil img{
 	width:70px;
 	height:70px;
