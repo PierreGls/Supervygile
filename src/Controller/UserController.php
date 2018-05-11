@@ -84,5 +84,13 @@ class UserController extends Controller
         return $this->render('creerProjetTemplate.html.twig');
     }
 	
+	/**
+     * @Route("/rejoindreProjet", name="rejoindreProjet")
+     */
+    public function rejoindreProjet()
+    {
+        return $this->render('rejoindreProjetTemplate.html.twig');
+    }
+	
 	
 }

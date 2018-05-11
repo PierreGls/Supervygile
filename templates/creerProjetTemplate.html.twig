@@ -1,7 +1,7 @@
 {% extends 'headTemplate.html.twig' %}
 
 {% block body %}
-	{% include 'topTemplate.html.twig' %}
+	{% include 'connectedTopTemplate.html.twig' %}
 
 	<!-- Page Créer un projet -->
 	
@@ -19,11 +19,23 @@
 				</div>
 			</div>
 			
+			
+			{#
 			<div class="row"> 
 				<div class="form-group col-lg-12">
 					<label for="text" class="col-lg-4 control-label"> Description du projet : </label>
 					<div class="col-lg-7 d-inline-block">
 						<input type="text" class="form-control" name="descriptionProjet" value=" +++" style="height:3em;"> 
+					</div>
+				</div>
+			</div>
+			#}
+			
+			<div class="row"> 
+				<div class="form-group col-lg-12">
+					<label class="col-lg-4 control-label align-middle" for="textarea">Description du projet :</label>
+					<div class="col-lg-7 d-inline-block align-middle">
+						<textarea class="form-control" id="textarea" name="descriptionProjet">Ce projet a pour but...</textarea>
 					</div>
 				</div>
 			</div>

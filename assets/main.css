@@ -4,7 +4,7 @@
 *{
 	border: 1px solid rgba(100,100,100,0.8);
 }
-*/
+
 
 
 /**********************************Accueil**************************/
@@ -41,11 +41,6 @@
 
 /**********************************MonProfil**************************/
 
-/*Pour que le footer soit en bas*/
-#pageProfil{				
-	min-height:75vh;
-}
-
 
 .imgProfil{
 	width:70px;
@@ -66,4 +61,11 @@
 	border:1px solid DarkGray;
 	height:180px;
 	width:286px;
+}
+
+/**********************************Footer**************************/
+
+/*Pour que le footer soit en bas*/
+#pageProfil, #pageRejoindreProjet{				
+	min-height:75vh;
 }
