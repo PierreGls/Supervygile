@@ -73,7 +73,21 @@ class UserController extends Controller
      */
     public function monProfil($onglet)
     {
-        return $this->render('connectedProfilTemplate.html.twig',['nom_onglet' => $onglet]);
+		$session = new Session();
+		$login = $session->get('login');
+		
+		$entityManager = $this->getDoctrine()->getManager();
+		$user = $entityManager->getRepository(User::class)->findOneBy(['login' => $login]);
+		
+        $infos = array();
+		
+		$infos['login']=$login;
+		$infos['nom']=$user->getNom();
+		$infos['prenom']=$user->getPrenom();
+		$infos['mail']=$user->getMail();
+		
+		$entityManager->flush();
+        return $this->render('connectedProfilTemplate.html.twig',['nom_onglet' => $onglet,'infos' => $infos]);
     }
 	
 	/**
@@ -90,6 +104,37 @@ class UserController extends Controller
     public function rejoindreProjet()
     {
         return $this->render('rejoindreProjetTemplate.html.twig');
+    }
+	
+	
+	/**
+     * @Route("modifierInfos", name="modifierInfos")
+     */
+    public function modifierInfosGeneral()
+    {
+		$session = new Session();
+		$login = $session->get('login');
+		
+		$entityManager = $this->getDoctrine()->getManager();
+		$user = $entityManager->getRepository(User::class)->findOneBy(['login' => $login]);
+		
+        $infos = array();
+		
+		if(isset($_POST['nom'])){
+			$infos['nom']=$_POST['nom'];
+			$user->setNom($_POST['nom']);
+		}
+		if(isset($_POST['prenom'])){
+			$infos['prenom']=$_POST['prenom'];
+			$user->setPrenom($_POST['prenom']);
+		}
+		if(isset($_POST['mail'])){
+			$infos['mail']=$_POST['mail'];
+			$user->setMail($_POST['mail']);
+		}
+		
+		$entityManager->flush();
+		return $this->monProfil('General');
     }
 	
 	

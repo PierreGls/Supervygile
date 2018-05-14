@@ -1,12 +1,12 @@
 <!-- Mon Profil -->
 </br>
-<form class="form-horizontal col-lg-12"  action=" ### " method="POST">
+<form action="{{ path('modifierInfos') }}" class="form-horizontal col-lg-12"  method="POST">
 		  	  
   <div class="row"> 													<!--grisé car pas changeable-->
 	<div class="form-group col-lg-12">
 	  <label for="text" class="col-lg-4 control-label">Login : </label>
 	  <div class="col-lg-7" style="display:inline-block">
-		<input type="text" class="form-control" name="infoLogin" value=" +++" disabled> 
+		<input type="text" class="form-control" name="infoLogin" value="{{ infos.login }}" disabled> 
 	  </div>
 	</div>
   </div>
@@ -25,7 +25,7 @@
 	<div class="form-group col-lg-12">
 	  <label for="text" class="col-lg-4 control-label">Nom : </label>
 	  <div class="col-lg-7" style="display:inline-block">
-		<input type="text" class="form-control" name="nom" value="???" required>
+		<input type="text" class="form-control" name="nom" value="{{ infos.nom}}" required>
 	  </div>
 	</div>
   </div>
@@ -34,7 +34,7 @@
 	<div class="form-group col-lg-12">
 	  <label for="text" class="col-lg-4 control-label">Prénom : </label>
 	  <div class="col-lg-7" style="display:inline-block">
-		<input type="text" class="form-control" name="prenom" value=" !!! " required> 
+		<input type="text" class="form-control" name="prenom" value="{{ infos.prenom}}" required> 
 	  </div>
 	</div>
   </div>
@@ -43,7 +43,7 @@
 	<div class="form-group col-lg-12">
 	  <label for="text" class="col-lg-4 control-label">Mail : </label>
 	  <div class="col-lg-7" style="display:inline-block">
-		<input type="mail" class="form-control" name="mail" value=" ...@..." required>
+		<input type="mail" class="form-control" name="mail" value=" {{ infos.mail}}" required>
 	  </div>
 	</div>
   </div>
