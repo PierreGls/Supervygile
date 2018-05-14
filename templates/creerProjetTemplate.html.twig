@@ -1,0 +1,56 @@
+{% extends 'headTemplate.html.twig' %}
+
+{% block body %}
+	{% include 'connectedTopTemplate.html.twig' %}
+
+	<!-- Page Créer un projet -->
+	
+	<div class="container">
+		<h2 class="col-12 text-center mt-5 mb-5">Création d'un projet</h2>
+		
+		<form class="form-horizontal col-lg-12"  action=" ### " method="POST">
+		  	  
+			<div class="row"> 
+				<div class="form-group col-lg-12">
+					<label for="text" class="col-lg-4 control-label">Titre du projet : </label>
+					<div class="col-lg-7 d-inline-block">
+						<input type="text" class="form-control" name="titreProjet" value=" +++"> 
+					</div>
+				</div>
+			</div>
+			
+			
+			{#
+			<div class="row"> 
+				<div class="form-group col-lg-12">
+					<label for="text" class="col-lg-4 control-label"> Description du projet : </label>
+					<div class="col-lg-7 d-inline-block">
+						<input type="text" class="form-control" name="descriptionProjet" value=" +++" style="height:3em;"> 
+					</div>
+				</div>
+			</div>
+			#}
+			
+			<div class="row"> 
+				<div class="form-group col-lg-12">
+					<label class="col-lg-4 control-label align-middle" for="textarea">Description du projet :</label>
+					<div class="col-lg-7 d-inline-block align-middle">
+						<textarea class="form-control" id="textarea" name="descriptionProjet">Ce projet a pour but...</textarea>
+					</div>
+				</div>
+			</div>
+			
+			<div class="mt-5 mb-5 text-center" id="imgProfil">
+				<img class="imgProjet mx-auto d-block mb-2" src="{{ absolute_url(asset('../assets/img/projetParDefault.jpg')) }}">	
+				<a href="#" class="btn btn-sm btn-info mx-auto text-center"><span class="glyphicon glyphicon-chevron-right"></span> Changer l'image</a>
+			</div>
+
+			<div class="row form-group mt-5 mb-5">
+				<input class="btn btn-lg btn-success mx-auto" type="submit" value="Créer" />
+			</div>
+		</form>
+	</div>
+	
+	{% include 'footTemplate.html.twig' %}
+	
+{% endblock %}
