@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Utilisateur;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,7 +30,7 @@ class AnonymousController extends Controller
     */
     public function signin()
     {
-		$repository = $this->getDoctrine()->getRepository(User::class);
+		$repository = $this->getDoctrine()->getRepository(Utilisateur::class);
 		// look for a single User by login
 		$user = $repository->findOneBy(['login' => $_POST['inscLogin'], 'password' => $_POST['inscPassword']]);
 		
@@ -51,7 +51,7 @@ class AnonymousController extends Controller
     */
     public function register()
     {
-		$repository = $this->getDoctrine()->getRepository(User::class);
+		$repository = $this->getDoctrine()->getRepository(Utilisateur::class);
 		// look for a single User by login
 		$user = $repository->findOneBy(['login' => $_POST['inscLogin']]);
 

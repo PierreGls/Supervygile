@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,22 @@ class Projet
      * @ORM\Column(type="datetime")
      */
     private $date_fin;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Groupe", inversedBy="projet")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $groupe;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Fonctionnalite", mappedBy="projet")
+     */
+    private $fonctionnalites;
+
+    public function __construct()
+    {
+        $this->fonctionnalites = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -85,6 +103,49 @@ class Projet
     public function setDateFin(\DateTimeInterface $date_fin): self
     {
         $this->date_fin = $date_fin;
+
+        return $this;
+    }
+
+    public function getGroupe(): ?Groupe
+    {
+        return $this->groupe;
+    }
+
+    public function setGroupe(?Groupe $groupe): self
+    {
+        $this->groupe = $groupe;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Fonctionnalite[]
+     */
+    public function getFonctionnalites(): Collection
+    {
+        return $this->fonctionnalites;
+    }
+
+    public function addFonctionnalite(Fonctionnalite $fonctionnalite): self
+    {
+        if (!$this->fonctionnalites->contains($fonctionnalite)) {
+            $this->fonctionnalites[] = $fonctionnalite;
+            $fonctionnalite->setProjet($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFonctionnalite(Fonctionnalite $fonctionnalite): self
+    {
+        if ($this->fonctionnalites->contains($fonctionnalite)) {
+            $this->fonctionnalites->removeElement($fonctionnalite);
+            // set the owning side to null (unless already changed)
+            if ($fonctionnalite->getProjet() === $this) {
+                $fonctionnalite->setProjet(null);
+            }
+        }
 
         return $this;
     }

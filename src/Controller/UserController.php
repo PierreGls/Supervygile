@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Utilisateur;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -32,7 +32,7 @@ class UserController extends Controller
 	public function create($infos){
 		$entityManager = $this->getDoctrine()->getManager();
 
-        $user = new User();
+        $user = new Utilisateur();
         $user->setLogin($infos['login']);
         $user->setPassword($infos['pwd']);
         $user->setMail($infos['mail']);
@@ -76,7 +76,7 @@ class UserController extends Controller
 		$login = $session->get('login');
 		
 		$entityManager = $this->getDoctrine()->getManager();
-		$user = $entityManager->getRepository(User::class)->findOneBy(['login' => $login]);
+		$user = $entityManager->getRepository(Utilisateur::class)->findOneBy(['login' => $login]);
 		
         $infos = array();
 		
@@ -115,7 +115,7 @@ class UserController extends Controller
 		$login = $session->get('login');
 		
 		$entityManager = $this->getDoctrine()->getManager();
-		$user = $entityManager->getRepository(User::class)->findOneBy(['login' => $login]);
+		$user = $entityManager->getRepository(Utilisateur::class)->findOneBy(['login' => $login]);
 		
         $infos = array();
 		
