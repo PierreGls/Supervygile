@@ -47,6 +47,16 @@ class ProjetRepository extends ServiceEntityRepository
         ;
     }
     */
+	public function findByGroupe($groupe_id): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.groupe_id = :val')
+            ->setParameter('val', $groupe_id)
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 	
 	public function findAll(): array
     {

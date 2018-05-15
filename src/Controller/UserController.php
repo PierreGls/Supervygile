@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Utilisateur;
 use App\Entity\Projet;
+use App\Entity\Groupe;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -106,20 +107,31 @@ class UserController extends Controller
      */
     public function validerCreation()
     {
+		//récupère le login de l'utilisateur courant pour l'ajouter au groupe
+		$session = new Session();
+		$login = $session->get('login');
+		$repository = $this->getDoctrine()->getRepository(Utilisateur::class);
+		$user = $repository->findOneBy(['login' => $login]);
+		
+		
+		//crée un nouveau groupe constitué d'une personne (le créateur du projet)
 		$entityManager = $this->getDoctrine()->getManager();
-
+        $groupe = new Groupe();
+		$groupe->addUtilisateur($user);
+        $entityManager->persist($groupe);
+        $entityManager->flush();
+		
+		
+		//crée le nouveau projet dans la base
+		$entityManager = $this->getDoctrine()->getManager();
         $projet = new Projet();
         $projet->setNom($_POST['titreProjet']);
         $projet->setDescription($_POST['descriptionProjet']);
-        
-
-        // tell Doctrine you want to (eventually) save the project (no queries yet)
+		$projet->setGroupe($groupe);
         $entityManager->persist($projet);
-
-        // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
-        //return $this->render('creerProjetTemplate.html.twig');
 		
+		//récupère un tableau des projets existants
 		$projets = $this->getDoctrine()
 			->getRepository(Projet::class)
 			->findAll();
