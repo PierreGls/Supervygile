@@ -22,10 +22,8 @@ class UserController extends Controller
             'controller_name' => 'UserController', "infos" => $infos,
         ]);
 		*/
-		
-		return $this->render('connectedAccueilTemplate.html.twig',['controller_name' => 'UserController', "infos" => $infos]);
-		
-		
+		$nbProjects = 4;
+		return $this->render('connectedAccueilTemplate.html.twig',['controller_name' => 'UserController', "infos" => $infos,  "n" => $nbProjects]);
     }
 	
 	/**
@@ -63,10 +61,9 @@ class UserController extends Controller
 	/**
      * @Route("/connectedAccueil", name="connectedAccueil")
      */
-    public function connectedAccueil()	//Meme chose qu'
+    public function connectedAccueil()
     {
-		$nbProjects = 4
-		;
+		$nbProjects = 4;
         return $this->render('connectedAccueilTemplate.html.twig',['n' => $nbProjects]);
     }
 	

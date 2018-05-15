@@ -16,9 +16,11 @@
 			<div class="col-12">
 				<h2 class="mb-4 font-italic">Mes projets</h2>
 				
+				<p> {{ n }} </p>
+				
 				<!-- Liste des projets -->
 				<div class="row" id="listeProjet"> 
-					{% if  n != 0 %}
+					{% if (n !=0 ) %}
 						{% for i in 1..n %}
 						
 							<div class="card d-inline-block ml-2 mb-2" style="width: 15rem;">
