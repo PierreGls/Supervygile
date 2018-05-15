@@ -36,6 +36,11 @@ class Tache
      */
     private $commentaire;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\UserStory", inversedBy="taches")
+     */
+    private $userStory;
+
     public function getId()
     {
         return $this->id;
@@ -85,6 +90,18 @@ class Tache
     public function setCommentaire(?string $commentaire): self
     {
         $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    public function getUserStory(): ?UserStory
+    {
+        return $this->userStory;
+    }
+
+    public function setUserStory(?UserStory $userStory): self
+    {
+        $this->userStory = $userStory;
 
         return $this;
     }

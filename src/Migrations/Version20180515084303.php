@@ -8,14 +8,16 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20180508085641 extends AbstractMigration
+class Version20180515084303 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE utilisateur (id INT AUTO_INCREMENT NOT NULL, login VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, mail VARCHAR(255) NOT NULL, nom VARCHAR(255) NOT NULL, prenom VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE projet ADD groupe_id INT NOT NULL');
+        $this->addSql('ALTER TABLE projet ADD CONSTRAINT FK_50159CA97A45358C FOREIGN KEY (groupe_id) REFERENCES groupe (id)');
+        $this->addSql('CREATE INDEX IDX_50159CA97A45358C ON projet (groupe_id)');
     }
 
     public function down(Schema $schema)
@@ -23,6 +25,8 @@ class Version20180508085641 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE utilisateur');
+        $this->addSql('ALTER TABLE projet DROP FOREIGN KEY FK_50159CA97A45358C');
+        $this->addSql('DROP INDEX IDX_50159CA97A45358C ON projet');
+        $this->addSql('ALTER TABLE projet DROP groupe_id');
     }
 }
