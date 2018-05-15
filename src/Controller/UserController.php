@@ -65,7 +65,9 @@ class UserController extends Controller
      */
     public function connectedAccueil()	//Meme chose qu'
     {
-        return $this->render('connectedAccueilTemplate.html.twig');
+		$nbProjects = 4
+		;
+        return $this->render('connectedAccueilTemplate.html.twig',['n' => $nbProjects]);
     }
 	
 	/**

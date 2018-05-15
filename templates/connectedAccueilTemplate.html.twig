@@ -9,7 +9,7 @@
 	
 	<div class="container">
 		<div class="row mt-5 mb-5">
-			<h1 class="mx-auto"> Salutations cher ... !</h1>			
+			<h1 class="mx-auto"> Bienvenue !</h1>			
 		</div>
 		
 		<div class="row mb-3 mt-3">
@@ -18,19 +18,22 @@
 				
 				<!-- Liste des projets -->
 				<div class="row" id="listeProjet"> 
-				
-					{% for i in 1..7 %}
-					
-						<div class="card d-inline-block ml-2 mb-2" style="width: 15rem;">
-							<img class="card-img-top" src="{{ absolute_url(asset('../assets/img/projetParDefault.jpg')) }}" alt="Card image cap">
-							<div class="card-body text-center">
-								<h5 class="card-title text-truncate text-center">Supervygile</h5>
-								<p class="card-text text-truncate">(Description du projet) : C'est un projet de supervision de projet agile à but éducatif </p>
-								<a href="#" class="btn btn-primary mx-auto">Choisir</a>
+					{% if  n != 0 %}
+						{% for i in 1..n %}
+						
+							<div class="card d-inline-block ml-2 mb-2" style="width: 15rem;">
+								<img class="card-img-top" src="{{ absolute_url(asset('../assets/img/projetParDefault.jpg')) }}" alt="Card image cap">
+								<div class="card-body text-center">
+									<h5 class="card-title text-truncate text-center">Supervygile</h5>
+									<p class="card-text text-truncate">(Description du projet) : C'est un projet de supervision de projet agile à but éducatif </p>
+									<a href="#" class="btn btn-primary mx-auto">Choisir</a>
+								</div>
 							</div>
-						</div>
-					
-					{% endfor %}
+						
+						{% endfor %}
+					{% else %}
+						<h3 class="mb-4 font-italic">Vous n'avez aucun projet en cours !</h3>
+					{% endif %}
 				</div>
 			</div>
 			
