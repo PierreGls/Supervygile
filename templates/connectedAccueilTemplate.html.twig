@@ -16,20 +16,19 @@
 			<div class="col-12">
 				<h2 class="mb-4 font-italic">Mes projets</h2>
 				
-				<p> {{ n }} </p>
-				
 				<!-- Liste des projets -->
 				<div class="row" id="listeProjet"> 
 
-					{% if n!= 0 %}
-						{% for i in 1..n %}
+					{% if projets|length!= 0 %}
+						{% for projet in projets %}
 						
 							<div class="card d-inline-block ml-2 mb-2" style="width: 15rem;">
 								<img class="card-img-top" src="{{ absolute_url(asset('../assets/img/projetParDefault.jpg')) }}" alt="Card image cap">
 								<div class="card-body text-center">
-									<h5 class="card-title text-truncate text-center">Supervygile</h5>
-									<p class="card-text text-truncate">(Description du projet) : C'est un projet de supervision de projet agile à but éducatif </p>
+									<h5 class="card-title text-truncate text-center">{{projet.nom}}</h5>
+									<p class="card-text text-truncate">{{projet.description}}</p>
 									<a href="#" class="btn btn-primary mx-auto">Choisir</a>
+									
 								</div>
 							</div>
 						

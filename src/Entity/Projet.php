@@ -22,21 +22,18 @@ class Projet
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
+	
+	/**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $description;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $id_image;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $date_debut;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $date_fin;
+    
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Groupe", inversedBy="projet")
@@ -71,7 +68,19 @@ class Projet
         return $this;
     }
 
-    public function getIdImage(): ?int
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+	
+	public function getIdImage(): ?int
     {
         return $this->id_image;
     }
@@ -79,30 +88,6 @@ class Projet
     public function setIdImage(?int $id_image): self
     {
         $this->id_image = $id_image;
-
-        return $this;
-    }
-
-    public function getDateDebut(): ?\DateTimeInterface
-    {
-        return $this->date_debut;
-    }
-
-    public function setDateDebut(\DateTimeInterface $date_debut): self
-    {
-        $this->date_debut = $date_debut;
-
-        return $this;
-    }
-
-    public function getDateFin(): ?\DateTimeInterface
-    {
-        return $this->date_fin;
-    }
-
-    public function setDateFin(\DateTimeInterface $date_fin): self
-    {
-        $this->date_fin = $date_fin;
 
         return $this;
     }

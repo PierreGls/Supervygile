@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Utilisateur;
+use App\Entity\Projet;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,13 +18,13 @@ class UserController extends Controller
     {
 		$session = new Session();
 		$session->set('login', $infos['login']);
-		/*
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController', "infos" => $infos,
-        ]);
-		*/
-		$nbProjects = 4;
-		return $this->render('connectedAccueilTemplate.html.twig',['controller_name' => 'UserController', "infos" => $infos,  "n" => $nbProjects]);
+		
+		$projets = $this->getDoctrine()
+			->getRepository(Projet::class)
+			->findAll();
+		
+		
+		return $this->render('connectedAccueilTemplate.html.twig',['controller_name' => 'UserController', "infos" => $infos,  "projets" => $projets, ]);
     }
 	
 	/**
@@ -63,8 +64,11 @@ class UserController extends Controller
      */
     public function connectedAccueil()
     {
-		$nbProjects = 4;
-        return $this->render('connectedAccueilTemplate.html.twig',['n' => $nbProjects]);
+		$projets = $this->getDoctrine()
+			->getRepository(Projet::class)
+			->findAll();
+
+        return $this->render('connectedAccueilTemplate.html.twig',[ "projets" => $projets]);
     }
 	
 	/**
@@ -94,7 +98,33 @@ class UserController extends Controller
      */
     public function creerProjet()
     {
+		
         return $this->render('creerProjetTemplate.html.twig');
+    }
+	/**
+     * @Route("/validerCreation", name="validerCreation")
+     */
+    public function validerCreation()
+    {
+		$entityManager = $this->getDoctrine()->getManager();
+
+        $projet = new Projet();
+        $projet->setNom($_POST['titreProjet']);
+        $projet->setDescription($_POST['descriptionProjet']);
+        
+
+        // tell Doctrine you want to (eventually) save the project (no queries yet)
+        $entityManager->persist($projet);
+
+        // actually executes the queries (i.e. the INSERT query)
+        $entityManager->flush();
+        //return $this->render('creerProjetTemplate.html.twig');
+		
+		$projets = $this->getDoctrine()
+			->getRepository(Projet::class)
+			->findAll();
+
+        return $this->render('connectedAccueilTemplate.html.twig',['projets' => $projets, ]);
     }
 	
 	/**
