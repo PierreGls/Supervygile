@@ -179,11 +179,14 @@ class UserController extends Controller
     }
 	
 	/**
-     * @Route("/projet", name="projet")
+     * @Route("/projet/{id}", name="projet")
      */
-    public function projet()
+    public function projet($id)
     {
-        return $this->render('projetTemplate.html.twig');
+		$projet = $this->getDoctrine()
+			->getRepository(Projet::class)
+			->find($id);
+        return $this->render('projetTemplate.html.twig',['projet'=>$projet]);
     }
 	
 	/**
