@@ -58,18 +58,7 @@ class ProjetRepository extends ServiceEntityRepository
         ;
     }
 	
-	public function findAll(): array
-    {
-        $entityManager = $this->getEntityManager();
-
-		$query = $entityManager->createQuery(
-			'SELECT p
-			FROM App\Entity\Projet p'
-		);
-
-		// returns an array of Product objects
-		return $query->execute();
-    }
+	
 	
 	public function getCount(): int
     {

@@ -20,9 +20,18 @@ class UserController extends Controller
 		$session = new Session();
 		$session->set('login', $infos['login']);
 		
-		$projets = $this->getDoctrine()
-			->getRepository(Projet::class)
-			->findAll();
+		$repository = $this->getDoctrine()->getRepository(Utilisateur::class);
+		$user = $repository->findOneBy(['login' => $login]);
+		
+		//récupère les groupes associés à l'utilisateur courant
+		$user_groupes = $user->getGroupes();
+		$projets=array();
+		foreach ( $user_groupes as &$groupe){
+			$projets_du_groupe = $groupe->getProjet();
+			foreach ($projets_du_groupe as &$projet){
+				$projets[] = $projet;
+			}
+		}
 		
 		
 		return $this->render('connectedAccueilTemplate.html.twig',['controller_name' => 'UserController', "infos" => $infos,  "projets" => $projets, ]);
@@ -65,9 +74,21 @@ class UserController extends Controller
      */
     public function connectedAccueil()
     {
-		$projets = $this->getDoctrine()
-			->getRepository(Projet::class)
-			->findAll();
+		$session = new Session();
+		$login = $session->get('login');
+		
+		$repository = $this->getDoctrine()->getRepository(Utilisateur::class);
+		$user = $repository->findOneBy(['login' => $login]);
+		
+		//récupère les groupes associés à l'utilisateur courant
+		$user_groupes = $user->getGroupes();
+		$projets=array();
+		foreach ( $user_groupes as &$groupe){
+			$projets_du_groupe = $groupe->getProjet();
+			foreach ($projets_du_groupe as &$projet){
+				$projets[] = $projet;
+			}
+		}
 
         return $this->render('connectedAccueilTemplate.html.twig',[ "projets" => $projets]);
     }
@@ -131,10 +152,15 @@ class UserController extends Controller
         $entityManager->persist($projet);
         $entityManager->flush();
 		
-		//récupère un tableau des projets existants
-		$projets = $this->getDoctrine()
-			->getRepository(Projet::class)
-			->findAll();
+		//récupère les groupes associés à l'utilisateur courant
+		$user_groupes = $user->getGroupes();
+		$projets=array();
+		foreach ( $user_groupes as &$groupe){
+			$projets_du_groupe = $groupe->getProjet();
+			foreach ($projets_du_groupe as &$projet){
+				$projets[] = $projet;
+			}
+		}
 
         return $this->render('connectedAccueilTemplate.html.twig',['projets' => $projets, ]);
     }
