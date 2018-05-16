@@ -35,7 +35,6 @@
 /**********************************ConnectedAccueil**************************/
 
 #listeProjet{
-	overflow-x:scroll;
 	max-height:20em;
 }
 
