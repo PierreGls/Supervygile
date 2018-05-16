@@ -47,4 +47,42 @@ class ProjetRepository extends ServiceEntityRepository
         ;
     }
     */
+	public function findByGroupe($groupe_id): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.groupe_id = :val')
+            ->setParameter('val', $groupe_id)
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+	
+	public function findAll(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+		$query = $entityManager->createQuery(
+			'SELECT p
+			FROM App\Entity\Projet p'
+		);
+
+		// returns an array of Product objects
+		return $query->execute();
+    }
+	
+	public function getCount(): int
+    {
+        $entityManager = $this->getEntityManager();
+
+		$query = $entityManager->createQuery(
+			'SELECT COUNT(p)
+			FROM App\Entity\Projet p
+			'
+		);
+
+		// returns an int of Product objects
+		$result = $query->execute();
+		return $result[0][1];
+    }
 }

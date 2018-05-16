@@ -18,10 +18,6 @@ class Groupe
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $nombre_participants;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Projet", mappedBy="groupe")
@@ -44,18 +40,6 @@ class Groupe
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getNombreParticipants(): ?int
-    {
-        return $this->nombre_participants;
-    }
-
-    public function setNombreParticipants(?int $nombre_participants): self
-    {
-        $this->nombre_participants = $nombre_participants;
-
-        return $this;
     }
 
     /**

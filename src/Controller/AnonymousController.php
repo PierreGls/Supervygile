@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AnonymousController extends Controller
 {
 	/**
-      * @Route("/accueil")
+      * @Route("/")
     */
     public function accueil()
     {
