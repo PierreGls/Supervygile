@@ -21,7 +21,7 @@ class UserController extends Controller
 		$session->set('login', $infos['login']);
 		
 		$repository = $this->getDoctrine()->getRepository(Utilisateur::class);
-		$user = $repository->findOneBy(['login' => $login]);
+		$user = $repository->findOneBy(['login' => $infos['login']]);
 		
 		//récupère les groupes associés à l'utilisateur courant
 		$user_groupes = $user->getGroupes();
