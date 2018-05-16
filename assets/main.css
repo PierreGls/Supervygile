@@ -12,7 +12,7 @@
 	background-image:url(img/accueilimg.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
-	min-height:90vh;
+	min-height:85vh;
 }
 
 .masthead h1{
@@ -63,13 +63,35 @@
 	width:286px;
 }
 
-#listeRechercheProjet {
+
+/**********************************Projet**************************/
+
+/*		Image de fond 
+#pageProjet{
+	background-image:url(img/projetFond.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+*/
+
+#listeFonctionnalités > div, #listeFonctionnalités > a{
+	min-height:30vh;
+}
+
+/**********************************Fonctionnalités**************************/
+
+table{
+	box-shadow: 10px 10px 5px grey;
+}
+
+nomUserStory input{
 	
 }
 
 /**********************************Footer**************************/
 
 /*Pour que le footer soit en bas*/
-#pageProfil, #pageRejoindreProjet{				
+#pageProfil, #pageRejoindreProjet, #pageProjet, #pageListeProjet, #pageFonctionnalite{				
 	min-height:75vh;
 }

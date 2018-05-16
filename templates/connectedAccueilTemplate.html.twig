@@ -7,7 +7,7 @@
 	<!-- Page d'accueil d'un User -->
 	
 	
-	<div class="container">
+	<div class="container" id="pageListeProjet">
 		<div class="row mt-5 mb-5">
 			<h1 class="mx-auto"> Bienvenue !</h1>			
 		</div>
@@ -16,11 +16,10 @@
 			<div class="col-12">
 				<h2 class="mb-4 font-italic">Mes projets</h2>
 				
-				<p> {{ n }} </p>
-				
 				<!-- Liste des projets -->
 				<div class="row" id="listeProjet"> 
-
+				
+					<!-- n est le nombre de projet de l'utilisateur -->
 					{% if n!= 0 %}
 						{% for i in 1..n %}
 						
@@ -29,7 +28,7 @@
 								<div class="card-body text-center">
 									<h5 class="card-title text-truncate text-center">Supervygile</h5>
 									<p class="card-text text-truncate">(Description du projet) : C'est un projet de supervision de projet agile à but éducatif </p>
-									<a href="#" class="btn btn-primary mx-auto">Choisir</a>
+									<a href="{{ path('projet') }}" class="btn btn-primary mx-auto">Choisir</a>
 								</div>
 							</div>
 						

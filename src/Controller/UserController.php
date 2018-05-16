@@ -136,5 +136,20 @@ class UserController extends Controller
 		return $this->monProfil('General');
     }
 	
+	/**
+     * @Route("/projet", name="projet")
+     */
+    public function projet()
+    {
+        return $this->render('projetTemplate.html.twig');
+    }
+	
+	/**
+     * @Route("/fonctionnalite", name="fonctionnalite")
+     */
+    public function fonctionnalite()
+    {
+        return $this->render('fonctionnaliteTemplate.html.twig');
+    }
 	
 }
