@@ -85,8 +85,10 @@ table{
 	box-shadow: 10px 10px 5px grey;
 }
 
-nomUserStory input{
-	
+.nomUserStory input{
+	border-radius:5px;
+	font-family: Impact, Charcoal, sans-serif;
+	font-size: 2em;
 }
 
 /**********************************Footer**************************/
