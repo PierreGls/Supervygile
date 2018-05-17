@@ -51,7 +51,7 @@
 										<h5 class="card-title ">Titre projet : {{projet.nom}} </h5>
 										<p class="card-text">Description : {{projet.description}}</p>
 										<div class="text-center">
-											<a href="#" class="btn btn-primary">Rejoindre ce projet</a>
+											<a href="{{path('validerReunion',{id: projet.id})}}" class="btn btn-primary">Rejoindre ce projet</a>
 										</div>
 									</div>
 								</div>

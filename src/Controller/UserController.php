@@ -173,6 +173,34 @@ class UserController extends Controller
         return $this->render('rejoindreProjetTemplate.html.twig');
     }
 	
+	
+	/**
+     * @Route("/validerReunion/{id}", name="validerReunion")
+     */
+    public function validerReunion($id)
+    {
+		$entityManager = $this->getDoctrine()->getManager();
+		$projet =  $entityManager->getRepository(Projet::class)->find($id);
+		
+		//récupère le login de l'utilisateur courant pour l'ajouter au groupe
+		$session = new Session();
+		$login = $session->get('login');
+		$repoUser = $this->getDoctrine()->getRepository(Utilisateur::class);
+		$user = $repoUser->findOneBy(['login' => $login]);
+		
+		//récupère le groupe associé au projet
+		$groupe = $projet->getGroupe();
+		//ajoute l'utilisateur courant à ce groupe
+		$groupe->addUtilisateur($user);
+		
+		$entityManager->flush();
+		
+		
+
+		
+        return $this->connectedAccueil();
+    }
+	
 	/**
      * @Route("/recherche", name="recherche")
      */

@@ -28,7 +28,7 @@
 
 									<h5 class="card-title text-truncate text-center">{{projet.nom}}</h5>
 									<p class="card-text text-truncate">{{projet.description}}</p>
-									<a href="projet/{{projet.id}}" class="btn btn-primary mx-auto">Choisir</a>
+									<a href="{{path('projet',{id: projet.id})}}" class="btn btn-primary mx-auto">Choisir</a>
 									
 								</div>
 							</div>
