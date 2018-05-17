@@ -173,6 +173,33 @@ class UserController extends Controller
         return $this->render('rejoindreProjetTemplate.html.twig');
     }
 	
+	/**
+     * @Route("/recherche", name="recherche")
+     */
+    public function rechercheProjet()
+    {
+		$titre =null;
+		$idProjet=null;
+		
+		
+		$repository = $this->getDoctrine()->getRepository(Projet::class);
+		
+		
+		if(isset($_POST['titreProjet']))
+			$titre = $_POST['titreProjet'];
+			$projets = $repository->findByTitre($titre);
+		
+		if(isset($_POST['idProjet'])){
+			$id = $_POST['idProjet'];
+			$projets[] = $repository->find($id);
+		}
+		
+		
+		
+		
+        return $this->render('rejoindreProjetTemplate.html.twig',['projets'=>$projets]);
+    }
+	
 	
 	/**
      * @Route("modifierInfos", name="modifierInfos")
