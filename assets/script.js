@@ -22,7 +22,7 @@ $(function () {
 	//Ajout d'une ligne
 	function nouvelleTache(unElement) {
 		nbrTache++;
-		var nouvelleLigne = "<tr><th scope='row'>" + nbrTache + "</th><td><input type='text' name='nomTache" + nbrTache + "' value='Nom tache " + nbrTache + "'></td><td><input type='checkbox' class='mx-auto' name='checkbox" + nbrTache + "'></td><td><div class='btn btn-outline-danger boutonSupprimerTache'> Supprimer </div></td></tr>"; 
+		var nouvelleLigne = "<tr><th scope='row'>" + nbrTache + "</th><td><input class='col-8' type='text' name='nomTache" + nbrTache + "' value='Nom tache " + nbrTache + "'></td><td><input type='checkbox' class='mx-auto' name='checkbox" + nbrTache + "'></td><td><div class='btn btn-outline-danger boutonSupprimerTache'> Supprimer </div></td></tr>"; 
 		unElement.before(nouvelleLigne);
 	}
 	
