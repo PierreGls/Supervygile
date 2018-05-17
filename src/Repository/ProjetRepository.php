@@ -36,17 +36,17 @@ class ProjetRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Projet
+    
+    public function findByTitre($value): array
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+            ->andWhere('p.nom = :val')
             ->setParameter('val', $value)
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
         ;
     }
-    */
+    
 	public function findByGroupe($groupe_id): array
     {
         return $this->createQueryBuilder('p')

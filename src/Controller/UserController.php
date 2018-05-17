@@ -175,6 +175,51 @@ class UserController extends Controller
 	
 	
 	/**
+     * @Route("/validerReunion/{id}", name="validerReunion")
+     */
+    public function validerReunion($id)
+    {
+		$entityManager = $this->getDoctrine()->getManager();
+		$projet =  $entityManager->getRepository(Projet::class)->find($id);
+		
+		//récupère le login de l'utilisateur courant pour l'ajouter au groupe
+		$session = new Session();
+		$login = $session->get('login');
+		$repoUser = $this->getDoctrine()->getRepository(Utilisateur::class);
+		$user = $repoUser->findOneBy(['login' => $login]);
+		
+		//récupère le groupe associé au projet
+		$groupe = $projet->getGroupe();
+		//ajoute l'utilisateur courant à ce groupe
+		$groupe->addUtilisateur($user);
+		
+		$entityManager->flush();
+		
+        return $this->connectedAccueil();
+    }
+	
+	/**
+     * @Route("/recherche", name="recherche")
+     */
+    public function rechercheProjet()
+    {
+		$titre =null;
+		$idProjet=null;
+		$repository = $this->getDoctrine()->getRepository(Projet::class);
+	
+		if(isset($_POST['titreProjet']))
+			$titre = $_POST['titreProjet'];
+			$projets = $repository->findByTitre($titre);
+		
+		if(isset($_POST['idProjet'])){
+			$id = $_POST['idProjet'];
+			$projets[] = $repository->find($id);
+		}
+        return $this->render('rejoindreProjetTemplate.html.twig',['projets'=>$projets]);
+    }
+	
+	
+	/**
      * @Route("modifierInfos", name="modifierInfos")
      */
     public function modifierInfosGeneral()
@@ -212,7 +257,9 @@ class UserController extends Controller
 		$projet = $this->getDoctrine()
 			->getRepository(Projet::class)
 			->find($id);
-        return $this->render('projetTemplate.html.twig',['projet'=>$projet]);
+		$membres = $projet->getGroupe()->getUtilisateurs();
+		
+        return $this->render('projetTemplate.html.twig',['projet'=>$projet, 'membres'=>$membres]);
     }
 	
 	/**
@@ -221,6 +268,26 @@ class UserController extends Controller
     public function fonctionnalite()
     {
         return $this->render('fonctionnaliteTemplate.html.twig');
+    }
+	
+	/**
+     * @Route("/projet/{id}/ajoutFonctionnalite", name="ajoutFonctionnalite")
+     */
+    public function ajoutFonctionnalite($id)
+    {
+		$nom = $_POST['nom'];
+		$entityManager = $this->getDoctrine()->getManager();
+		$projet =  $entityManager->getRepository(Projet::class)->find($id);
+		
+        $fonctionnalite = new Fonctionnalite();
+		$fonctionnalite->setNom($nom);
+		
+		$projet->addFonctionnalite($fonctionnalite);
+		$entityManager->flush();
+		
+		
+		
+        return $this->render('projetTemplate.html.twig',['fonctionnalites'=>$projet->getFonctionnalites()]);
     }
 	
 }
