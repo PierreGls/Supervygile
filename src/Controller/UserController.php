@@ -195,9 +195,6 @@ class UserController extends Controller
 		
 		$entityManager->flush();
 		
-		
-
-		
         return $this->connectedAccueil();
     }
 	
@@ -208,11 +205,8 @@ class UserController extends Controller
     {
 		$titre =null;
 		$idProjet=null;
-		
-		
 		$repository = $this->getDoctrine()->getRepository(Projet::class);
-		
-		
+	
 		if(isset($_POST['titreProjet']))
 			$titre = $_POST['titreProjet'];
 			$projets = $repository->findByTitre($titre);
@@ -221,10 +215,6 @@ class UserController extends Controller
 			$id = $_POST['idProjet'];
 			$projets[] = $repository->find($id);
 		}
-		
-		
-		
-		
         return $this->render('rejoindreProjetTemplate.html.twig',['projets'=>$projets]);
     }
 	
@@ -267,7 +257,9 @@ class UserController extends Controller
 		$projet = $this->getDoctrine()
 			->getRepository(Projet::class)
 			->find($id);
-        return $this->render('projetTemplate.html.twig',['projet'=>$projet]);
+		$membres = $projet->getGroupe()->getUtilisateurs();
+		
+        return $this->render('projetTemplate.html.twig',['projet'=>$projet, 'membres'=>$membres]);
     }
 	
 	/**
@@ -276,6 +268,26 @@ class UserController extends Controller
     public function fonctionnalite()
     {
         return $this->render('fonctionnaliteTemplate.html.twig');
+    }
+	
+	/**
+     * @Route("/projet/{id}/ajoutFonctionnalite", name="ajoutFonctionnalite")
+     */
+    public function ajoutFonctionnalite($id)
+    {
+		$nom = $_POST['nom'];
+		$entityManager = $this->getDoctrine()->getManager();
+		$projet =  $entityManager->getRepository(Projet::class)->find($id);
+		
+        $fonctionnalite = new Fonctionnalite();
+		$fonctionnalite->setNom($nom);
+		
+		$projet->addFonctionnalite($fonctionnalite);
+		$entityManager->flush();
+		
+		
+		
+        return $this->render('projetTemplate.html.twig',['fonctionnalites'=>$projet->getFonctionnalites()]);
     }
 	
 }
