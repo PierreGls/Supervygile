@@ -1,40 +1,34 @@
-Cartel
+Supervygile
 ======
 
 Inroduction
 -----------
 
-This is a Symfony project started on November 25, 2016, 12:18 pm.
-The goal is to provide a website for the "Cartel de l'IMT"
+C'est un projet Symfony crée le 21 Mars 2018.
+Le but de ce projet est de permettre la supervision de projets respectants la méthode agile.
 
-Specifications
+Spécificités
 --------------
+- Creation de compte
+- Creation de projet
+- Rejoindre un projet
+- Gestion de projet
 
-- User Management
-- Sports Managemet
-- Pictures Sharing
-- Events Management
-- News System
-- Easily customizable/Reusable
 
-Development
+Développement
 -----------
-Run every command below to get a working copy of the website
-- `git clone`
-- `cd cartel`
 
-Assuming `php` is in your path
+Exécutez chaque commande ci dessous pour obtenir une copie du site web
+- `git clone`
+- `cd supervygile`
+
+En supposant que php est dans votre Path
 - `php composer install` - Fill in your database/smtp parameters
 - `php bin/console cache:clear` - Clear cache
 - `php bin/console doctrine:schema:update --force` - Initialize BDD
 - `php bin/console doctrine:fixtures:load` - Fill BDD with fake datas
 - `php bin/console assets:install --symlink` - Install vendor assets
 
-Assuming `npm` is in your path
+En supposant que npm est dans votre path
 - `npm i` - Install dependencies (Webpack and CKEditor5)
 - `npm run build` - To build dependencies
-
-Cartel de l'IMT
-===============
-
-It is a Big worldwide sportive competition that last for 3 days beetween all IMT schools (Engineering schools)
