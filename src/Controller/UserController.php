@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Utilisateur;
 use App\Entity\Projet;
 use App\Entity\Groupe;
+use App\Entity\Fonctionnalite;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -258,8 +259,9 @@ class UserController extends Controller
 			->getRepository(Projet::class)
 			->find($id);
 		$membres = $projet->getGroupe()->getUtilisateurs();
+		$fonctionnalites = $projet->getFonctionnalites();
 		
-        return $this->render('projetTemplate.html.twig',['projet'=>$projet, 'membres'=>$membres]);
+        return $this->render('projetTemplate.html.twig',['projet'=>$projet, 'membres'=>$membres,'fonctionnalites'=>$fonctionnalites]);
     }
 	
 	/**
@@ -275,19 +277,20 @@ class UserController extends Controller
      */
     public function ajoutFonctionnalite($id)
     {
-		$nom = $_POST['nom'];
+		$entityManager = $this->getDoctrine()->getManager();
+		//ajoute la fonctionnalité à la base
+		$fonctionnalite = new Fonctionnalite();
+		$fonctionnalite->setNom($_POST['nom']);
+		$entityManager->persist($fonctionnalite);
+		$entityManager->flush();
+		
+		 //récupère le projet courant et lui associe la nouvelle fonctionnalité
 		$entityManager = $this->getDoctrine()->getManager();
 		$projet =  $entityManager->getRepository(Projet::class)->find($id);
-		
-        $fonctionnalite = new Fonctionnalite();
-		$fonctionnalite->setNom($nom);
-		
 		$projet->addFonctionnalite($fonctionnalite);
 		$entityManager->flush();
 		
-		
-		
-        return $this->render('projetTemplate.html.twig',['fonctionnalites'=>$projet->getFonctionnalites()]);
+        return $this->projet($id);
     }
 	
 }
