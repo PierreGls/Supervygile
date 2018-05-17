@@ -42,7 +42,7 @@
 		
 		<!-- Les fonctionnalités -->
 		<div class="row mb-5" id="listeFonctionnalités">
-			{#
+			
 			{% if fonctionnalites is defined %}
 				{% for f in fonctionnalites %}
 					<a href="{{ path('fonctionnalite') }}"  class="col-md-3 mr-1 mb-1 btn btn-outline-dark" >
@@ -56,9 +56,9 @@
 					</a>
 				{% endfor %}
 			{% endif %}
-			#}
+			
 			<div class="col-md-3 btn btn-outline-dark mr-1 mb-1">
-				<form action="{{ path('projet',{id: projet.id},'ajoutFonctionnalite') }}" class="form-horizontal col-lg-12"  method="POST">
+				<form action="{{ path('projet',{id: projet.id})}}/ajoutFonctionnalite" class="form-horizontal col-lg-12"  method="POST">
 					<input type="text" class="form-control mt-3 mb-5" name="nom" placeholder="Nom fonctionnalité" aria-label="Username" aria-describedby="basic-addon1" required>
 					<input class="btn btn-primary" type="submit" value="Ajouter une fonctionnalité" />
 				</form>
